@@ -43,5 +43,5 @@ func change_2d_scene(new_scene: String, delete: bool = true, keep_running: bool 
 		else:
 			world_2d.remove_child(current_2d_scene)
 	var new = load(new_scene).instantiate()
-	$World2D.add_child(new)
+	world_2d.add_child(new)
 	current_2d_scene = new
