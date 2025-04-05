@@ -16,18 +16,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-
 	if Input.is_action_just_pressed("fish"):
 		release_plumb_bob()
-
+		
+	if (plumb_bob != null):
+		if Input.is_action_just_pressed("move_left"):
+			plumb_bob.steer(-2000)
+		if Input.is_action_just_pressed("move_right"):
+			plumb_bob.steer(2000)
+			
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed   
 		$AnimatedSprite2D.play()
