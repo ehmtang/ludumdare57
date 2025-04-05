@@ -21,3 +21,5 @@ max_value = 1.25
 show_percentage = false
 
 [node name="Plumbbob" parent="." instance=ExtResource("3_lvxji")]
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="."]
