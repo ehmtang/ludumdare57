@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://crocof65bu224"]
+[gd_scene load_steps=11 format=4 uid="uid://crocof65bu224"]
 
 [ext_resource type="PackedScene" uid="uid://bjp4qygfqfx2" path="res://scenes/player/player.tscn" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://hu5gam3ut5nx" path="res://scripts/main.gd" id="1_k2fmo"]
 [ext_resource type="TileSet" uid="uid://cg0tpuwvnj7xp" path="res://assets/tileset/world_set.tres" id="2_iuonh"]
 [ext_resource type="Texture2D" uid="uid://urk053tjqvp1" path="res://assets/art/tilesheet/backgrounds.png" id="4_l3cfh"]
 [ext_resource type="AudioStream" uid="uid://bl43j5kybnup" path="res://assets/audio/mucking.wav" id="5_6q06x"]
+[ext_resource type="Texture2D" uid="uid://bc5l2xgth7vln" path="res://icon.svg" id="6_ow5a4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3cfh"]
 texture = ExtResource("4_l3cfh")
@@ -15,6 +16,11 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_6q06x"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_l3cfh")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ow5a4"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hujxm"]
+b = Vector2(0, 40)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_k2fmo")
@@ -35,4 +41,86 @@ tile_set = ExtResource("2_iuonh")
 stream = ExtResource("5_6q06x")
 autoplay = true
 
+[node name="Rope" type="Node2D" parent="."]
+position = Vector2(601, 5)
+rotation = 0.481177
+
+[node name="RopeTop" type="StaticBody2D" parent="Rope"]
+rotation = 0.569417
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope/RopeTop"]
+shape = SubResource("CircleShape2D_ow5a4")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Rope"]
+node_a = NodePath("../RopeTop")
+node_b = NodePath("../RopeSegment")
+
+[node name="RopeSegment" type="RigidBody2D" parent="Rope"]
+collision_mask = 3
+mass = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope/RopeSegment"]
+shape = SubResource("SegmentShape2D_hujxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rope/RopeSegment/CollisionShape2D"]
+position = Vector2(0, 20)
+scale = Vector2(0.0156261, 0.3125)
+texture = ExtResource("6_ow5a4")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Rope"]
+position = Vector2(0, 40.5)
+node_a = NodePath("../RopeSegment")
+node_b = NodePath("../RopeSegment2")
+
+[node name="RopeSegment2" type="RigidBody2D" parent="Rope"]
+position = Vector2(0, 41)
+collision_mask = 3
+mass = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope/RopeSegment2"]
+shape = SubResource("SegmentShape2D_hujxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rope/RopeSegment2/CollisionShape2D"]
+position = Vector2(0, 20)
+scale = Vector2(0.0156261, 0.3125)
+texture = ExtResource("6_ow5a4")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Rope"]
+position = Vector2(0, 81.5)
+node_a = NodePath("../RopeSegment2")
+node_b = NodePath("../RopeSegment3")
+
+[node name="RopeSegment3" type="RigidBody2D" parent="Rope"]
+position = Vector2(0, 82)
+collision_mask = 3
+mass = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope/RopeSegment3"]
+shape = SubResource("SegmentShape2D_hujxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rope/RopeSegment3/CollisionShape2D"]
+position = Vector2(0, 20)
+scale = Vector2(0.0156261, 0.3125)
+texture = ExtResource("6_ow5a4")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Rope"]
+position = Vector2(0, 122)
+node_a = NodePath("../RopeSegment3")
+node_b = NodePath("../RopeSegment4")
+
+[node name="RopeSegment4" type="RigidBody2D" parent="Rope"]
+position = Vector2(0, 123)
+collision_mask = 3
+mass = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rope/RopeSegment4"]
+shape = SubResource("SegmentShape2D_hujxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rope/RopeSegment4/CollisionShape2D"]
+position = Vector2(0, 20)
+scale = Vector2(0.0156261, 0.3125)
+texture = ExtResource("6_ow5a4")
+
 [connection signal="released_bob" from="Player" to="." method="_on_player_released_bob"]
+
+[editable path="Player"]
