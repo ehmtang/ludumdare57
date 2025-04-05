@@ -2,6 +2,8 @@ extends Node2D
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var rigid_body
 
+signal released_bob(plumbob : PlumbBob)
+
 var screen_size # Size of the game window.
 var velocity = Vector2.ZERO # The player's movement vector.
 var plumb_bob : Node2D = null
@@ -27,13 +29,14 @@ func _process(delta):
 		release_plumb_bob()
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+		velocity = velocity.normalized() * speed   
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
 
 func release_plumb_bob():
 	plumb_bob = load("res://scenes/plumbbob/plumbbob.tscn").instantiate()
-	plumb_bob.position = self.global_position
-	get_parent().add_child(plumb_bob)	
+	add_child(plumb_bob)  
+	plumb_bob.global_position = self.global_position + Vector2(0.3,0.3)
+	released_bob.emit(plumb_bob)
 	pass

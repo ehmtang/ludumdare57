@@ -7,7 +7,6 @@
 [node name="Plumbbob" type="RigidBody2D"]
 collision_mask = 3
 physics_material_override = ExtResource("1_3jx2y")
-gravity_scale = 0.424
 continuous_cd = 2
 script = ExtResource("1_jeeii")
 
