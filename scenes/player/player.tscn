@@ -1,30 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjp4qygfqfx2"]
+[gd_scene load_steps=4 format=3 uid="uid://bjp4qygfqfx2"]
 
 [ext_resource type="Script" uid="uid://dpq2dtrbcw7ae" path="res://scripts/player.gd" id="1_p47bc"]
-[ext_resource type="Texture2D" uid="uid://d2byrpe580twl" path="res://assets/art/characters/alienBlue.png" id="2_dovo2"]
 [ext_resource type="Texture2D" uid="uid://bdmoaj6hfpx6e" path="res://assets/art/icons/arrow.png" id="3_gmlin"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
-atlas = ExtResource("2_dovo2")
-region = Rect2(0, 0, 66, 96)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8afob"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gmlin")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://b6ab1ek0pkfs5" path="res://scenes/plumbbob/plumbbob.tscn" id="3_lvxji"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_p47bc")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_8afob")
 
 [node name="Arrow" type="Sprite2D" parent="."]
 position = Vector2(0, -75)
@@ -38,3 +19,5 @@ offset_right = 35.0
 offset_bottom = -35.0
 max_value = 1.25
 show_percentage = false
+
+[node name="Plumbbob" parent="." instance=ExtResource("3_lvxji")]

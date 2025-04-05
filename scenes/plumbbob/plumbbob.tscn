@@ -1,19 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ab1ek0pkfs5"]
+[gd_scene load_steps=7 format=3 uid="uid://b6ab1ek0pkfs5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bxi45tpnt6rnu" path="res://assets/pmaterials/bob_pmat.tres" id="1_3jx2y"]
 [ext_resource type="Script" uid="uid://kwewr658y1ba" path="res://scripts/plumbbob.gd" id="1_jeeii"]
 [ext_resource type="Texture2D" uid="uid://deqbh530t3522" path="res://assets/art/characters/plumbbob.png" id="2_3jx2y"]
+[ext_resource type="Texture2D" uid="uid://d2byrpe580twl" path="res://assets/art/characters/alienBlue.png" id="4_v0sn0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
+atlas = ExtResource("4_v0sn0")
+region = Rect2(0, 0, 66, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsbt8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmlin")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Plumbbob" type="RigidBody2D"]
 collision_mask = 3
 mass = 10.0
 physics_material_override = ExtResource("1_3jx2y")
-gravity_scale = 0.5
+gravity_scale = 0.6
+center_of_mass_mode = 1
 continuous_cd = 2
 angular_damp = 0.5
 script = ExtResource("1_jeeii")
-drag_value = 0.05
-perp_drag_value = 40.0
+drag_value = 0.3
+perp_drag_value = 20.0
 accel_force = 1000.0
 steer_factor = 30000.0
 
@@ -21,5 +38,10 @@ steer_factor = 30000.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_3jx2y")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_bsbt8")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-10, -12, -10, 11, 0, 22, 10, 10, 10, -12, 8, -19, -8, -19)
+position = Vector2(0, 2)
+polygon = PackedVector2Array(-13, 1, -12, 24, 11, 24, 13, 2, 10, -22, 0, -31, -10, -22)

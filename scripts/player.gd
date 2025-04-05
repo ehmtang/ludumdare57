@@ -15,13 +15,14 @@ var launch_inc = 1000
 var launch_min = 0
 var launch_max = 2000
 var is_charging : bool = false
-
+var plumb_bob_launched = false
 var progress_bar : ProgressBar = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	arrow = $Arrow
 	progress_bar = $Charge
+	plumb_bob = $Plumbbob
 	progress_bar.visible = false
 	pass # Replace with function body.
 
@@ -34,6 +35,9 @@ func _physics_process(delta: float) -> void:
 	steering_controls(delta)
 
 func fishing_controls(delta):
+	# Skip if launched
+	if plumb_bob_launched:
+		return
 	# Change trajectory
 	if not is_charging:
 		if Input.is_action_pressed("move_up"):
@@ -65,15 +69,13 @@ func fishing_controls(delta):
 		release_plumb_bob()
 
 func release_plumb_bob():
-	plumb_bob = load("res://scenes/plumbbob/plumbbob.tscn").instantiate()
-	add_child(plumb_bob)  
-	plumb_bob.global_position = self.global_position + Vector2(0.3,0.3)
 	plumb_bob.launch(direction * launch_force)
+	plumb_bob_launched=true
 	released_bob.emit(plumb_bob)
 	pass
 
 func steering_controls(delta):
-	if (plumb_bob != null):
+	if (plumb_bob_launched):
 		if Input.is_action_pressed("move_left"):
 			plumb_bob.steer(-1)
 		if Input.is_action_pressed("move_right"):
