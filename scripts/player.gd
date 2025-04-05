@@ -1,5 +1,4 @@
 extends Node2D
-@export var speed = 400 # How fast the player will move (pixels/sec).
 var rigid_body
 
 signal released_bob(plumbob : PlumbBob)
@@ -12,12 +11,18 @@ var angle : float = 0
 var orbit_radius : int = 50 
 var direction : Vector2 = Vector2.ZERO
 var launch_force = 0
-var launch_inc = 10
+var launch_inc = 1000
+var launch_min = 0
+var launch_max = 2000
 var is_charging : bool = false
+
+var progress_bar : ProgressBar = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	arrow = $Arrow
+	progress_bar = $Charge
+	progress_bar.visible = false
 	pass # Replace with function body.
 
 
@@ -28,13 +33,13 @@ func _process(delta):
 
 func fishing_controls(delta):
 	# Change trajectory
-	if Input.is_action_pressed("move_up"):
-		angle -= angle_speed
-	if Input.is_action_pressed("move_down"):
-		angle += angle_speed
+	if not is_charging:
+		if Input.is_action_pressed("move_up"):
+			angle -= angle_speed
+		if Input.is_action_pressed("move_down"):
+			angle += angle_speed
 	
 	angle = clamp(angle, 0.0, PI/2)
-
 	direction = Vector2.UP.rotated(angle).normalized()
 	var orbit_position = direction * orbit_radius
 	arrow.position = orbit_position
@@ -43,13 +48,18 @@ func fishing_controls(delta):
 	# Charging logic
 	if Input.is_action_just_pressed("fish"):
 		is_charging = true
+		progress_bar.visible = true
 		launch_force = 0
 
 	if is_charging and Input.is_action_pressed("fish"):
-		launch_force += launch_inc
+		progress_bar.value += delta
+		launch_force += launch_inc * delta
+		launch_force = clamp(launch_force, launch_min, launch_max)
 
 	if is_charging and Input.is_action_just_released("fish"):
 		is_charging = false
+		progress_bar.visible = false
+		progress_bar.value = 0
 		release_plumb_bob()
 
 func release_plumb_bob():
