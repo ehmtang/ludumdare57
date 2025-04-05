@@ -72,6 +72,7 @@ func release_plumb_bob():
 	plumb_bob.launch(direction * launch_force)
 	plumb_bob_launched=true
 	released_bob.emit(plumb_bob)
+	$JumpAudio.play()
 	pass
 
 func steering_controls(delta):

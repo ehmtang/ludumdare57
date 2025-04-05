@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjp4qygfqfx2"]
+[gd_scene load_steps=5 format=3 uid="uid://bjp4qygfqfx2"]
 
 [ext_resource type="Script" uid="uid://dpq2dtrbcw7ae" path="res://scripts/player.gd" id="1_p47bc"]
 [ext_resource type="Texture2D" uid="uid://bdmoaj6hfpx6e" path="res://assets/art/icons/arrow.png" id="3_gmlin"]
 [ext_resource type="PackedScene" uid="uid://b6ab1ek0pkfs5" path="res://scenes/plumbbob/plumbbob.tscn" id="3_lvxji"]
+[ext_resource type="AudioStream" uid="uid://bko75cctpghgt" path="res://assets/audio/jump.wav" id="4_lvxji"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_p47bc")
@@ -21,3 +22,6 @@ max_value = 1.25
 show_percentage = false
 
 [node name="Plumbbob" parent="." instance=ExtResource("3_lvxji")]
+
+[node name="JumpAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lvxji")
