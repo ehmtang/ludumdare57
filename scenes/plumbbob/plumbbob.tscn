@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6ab1ek0pkfs5"]
+
+[ext_resource type="Script" uid="uid://kwewr658y1ba" path="res://scripts/plumbbob.gd" id="1_jeeii"]
+[ext_resource type="Texture2D" uid="uid://deqbh530t3522" path="res://assets/art/characters/plumbbob.png" id="2_3jx2y"]
+
+[node name="Plumbbob" type="Node2D"]
+script = ExtResource("1_jeeii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Plumbbob" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3jx2y")

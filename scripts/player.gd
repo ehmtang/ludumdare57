@@ -3,6 +3,7 @@ extends RigidBody2D
 
 var screen_size # Size of the game window.
 var velocity = Vector2.ZERO # The player's movement vector.
+var plumb_bob : Node2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,8 +22,18 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 
+	if Input.is_action_just_pressed("fish"):
+		release_plumb_bob()
+
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
+
+func release_plumb_bob():
+	plumb_bob = load("res://scenes/plumbbob/plumbbob.tscn").instantiate()
+	plumb_bob.position = self.global_position
+	get_parent().add_child(plumb_bob)	
+	pass
+
