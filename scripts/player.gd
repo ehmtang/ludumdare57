@@ -24,7 +24,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	fishing_controls(delta)
-	steering_controls()
+
+func _physics_process(delta: float) -> void:
+	steering_controls(delta)
 
 func fishing_controls(delta):
 	# Change trajectory
@@ -60,9 +62,9 @@ func release_plumb_bob():
 	released_bob.emit(plumb_bob)
 	pass
 
-func steering_controls():
+func steering_controls(delta):
 	if (plumb_bob != null):
 		if Input.is_action_pressed("move_left"):
-			plumb_bob.steer(-2000)
+			plumb_bob.steer(-1)
 		if Input.is_action_pressed("move_right"):
-			plumb_bob.steer(2000)
+			plumb_bob.steer(1)
