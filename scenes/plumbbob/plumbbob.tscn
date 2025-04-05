@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6ab1ek0pkfs5"]
+[gd_scene load_steps=4 format=3 uid="uid://b6ab1ek0pkfs5"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://bxi45tpnt6rnu" path="res://assets/pmaterials/bob_pmat.tres" id="1_3jx2y"]
 [ext_resource type="Script" uid="uid://kwewr658y1ba" path="res://scripts/plumbbob.gd" id="1_jeeii"]
 [ext_resource type="Texture2D" uid="uid://deqbh530t3522" path="res://assets/art/characters/plumbbob.png" id="2_3jx2y"]
 
-[node name="Plumbbob" type="Node2D"]
+[node name="Plumbbob" type="RigidBody2D"]
+collision_mask = 3
+physics_material_override = ExtResource("1_3jx2y")
+gravity_scale = 0.424
+continuous_cd = 2
 script = ExtResource("1_jeeii")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Plumbbob" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_3jx2y")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-10, -12, -10, 11, 0, 22, 10, 10, 10, -12, 8, -19, -8, -19)

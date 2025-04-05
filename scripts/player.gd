@@ -1,5 +1,6 @@
-extends RigidBody2D
+extends Node2D
 @export var speed = 400 # How fast the player will move (pixels/sec).
+var rigid_body
 
 var screen_size # Size of the game window.
 var velocity = Vector2.ZERO # The player's movement vector.
@@ -36,4 +37,3 @@ func release_plumb_bob():
 	plumb_bob.position = self.global_position
 	get_parent().add_child(plumb_bob)	
 	pass
-
