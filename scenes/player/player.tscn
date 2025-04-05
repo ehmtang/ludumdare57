@@ -33,7 +33,8 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5gtgg"]
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="RigidBody2D"]
+collision_mask = 3
 script = ExtResource("1_p47bc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

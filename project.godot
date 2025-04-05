@@ -53,6 +53,6 @@ move_down={
 ]
 }
 
-[rendering]
+[layer_names]
 
-renderer/rendering_method="mobile"
+2d_physics/layer_2="Map"
