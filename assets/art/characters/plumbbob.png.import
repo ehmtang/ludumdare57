@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6bjii1n6disw"
-path="res://.godot/imported/playerGrey_up1.png-c9a8ab59407705c740916ac6ba003875.ctex"
+uid="uid://deqbh530t3522"
+path="res://.godot/imported/plumbbob.png-60c73a63c2ca238059fc0fb4fa21c45e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/characters/playerGrey_up1.png"
-dest_files=["res://.godot/imported/playerGrey_up1.png-c9a8ab59407705c740916ac6ba003875.ctex"]
+source_file="res://assets/art/characters/plumbbob.png"
+dest_files=["res://.godot/imported/plumbbob.png-60c73a63c2ca238059fc0fb4fa21c45e.ctex"]
 
 [params]
 
