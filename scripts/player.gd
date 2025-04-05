@@ -4,9 +4,7 @@ var rigid_body
 
 signal released_bob(plumbob : PlumbBob)
 
-var screen_size # Size of the game window.
-var velocity = Vector2.ZERO # The player's movement vector.
-var plumb_bob : Node2D = null
+var plumb_bob : PlumbBob = null
 
 var angle_speed : float = 0.05
 var arrow : Sprite2D = null
@@ -19,7 +17,6 @@ var is_charging : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	screen_size = get_viewport_rect().size
 	arrow = $Arrow
 	pass # Replace with function body.
 
