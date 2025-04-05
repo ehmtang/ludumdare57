@@ -10,7 +10,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	timer += delta
-	if timer > pause_time:
-		Global.game_controller.change_2d_scene("res://scenes/main/main.tscn")
+	#$Control/Button
 	pass
+
+
+func _on_start_pressed() -> void:
+	Global.game_controller.change_2d_scene("res://scenes/main/main.tscn")
+	pass # Replace with function body.
