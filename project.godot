@@ -64,4 +64,6 @@ fish={
 
 [physics]
 
+2d/run_on_separate_thread=true
 2d/default_gravity=500.0
+2d/solver/solver_iterations=32

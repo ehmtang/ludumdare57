@@ -27,6 +27,7 @@ func _ready() -> void:
 			new_segment.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * 41.0
 			new_segment.rotation = PI * ((i+1)%2) - PI/2
 			var new_joint = PinJoint2D.new()
+			#new_joint.bias = 1.0
 			add_child(new_joint)
 			new_joint.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * 40.5
 			segments.push_back(new_segment)
