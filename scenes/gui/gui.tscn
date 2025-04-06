@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs7y8bscjcold"]
+[gd_scene load_steps=3 format=3 uid="uid://cs7y8bscjcold"]
 
 [ext_resource type="Script" uid="uid://c2hvo0e686r0e" path="res://scripts/gui.gd" id="1_q21vd"]
+[ext_resource type="Texture2D" uid="uid://dch5bxgtiowl0" path="res://assets/art/icons/textbox.png" id="2_x2qsw"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,20 +11,32 @@ offset_bottom = 40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
-layout_mode = 3
+[node name="HUD" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -47.0
+offset_bottom = 39.0
 grow_horizontal = 0
 script = ExtResource("1_q21vd")
 
-[node name="Label" type="Label" parent="CanvasLayer/HUD"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -163.0
-offset_bottom = 43.0
-grow_horizontal = 0
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/HUD"]
+layout_mode = 2
+texture = ExtResource("2_x2qsw")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.396078, 0.313726, 0.341176, 1)
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var position_label: Label = $Label
+@onready var position_label: Label = $MarginContainer/Label
 @onready var player = get_node("/root/GameController/World2D/Main/Player")
 
 func _ready():
