@@ -2,6 +2,8 @@ extends Node2D
 var rigid_body
 
 signal released_bob(plumbob : PlumbBob)
+signal position_changed(new_position: Vector2)
+
 
 var plumb_bob : PlumbBob = null
 
@@ -29,6 +31,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	emit_signal("position_changed", plumb_bob.global_position)
 	fishing_controls(delta)
 
 func _physics_process(delta: float) -> void:
