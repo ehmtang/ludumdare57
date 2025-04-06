@@ -59,7 +59,8 @@ func fishing_controls(delta):
 		checkpoint_positions.append(plumb_bob.global_position)
 		var marker = load("res://scenes/checkpoint_flag/checkpoint_flag.tscn").instantiate()
 		marker.global_position = plumb_bob.global_position
-		get_tree().current_scene.add_child(marker)
+		self.get_parent().add_child(marker)
+		self.get_parent().print_tree_pretty()
 	
 	# Change trajectory
 	if not is_charging:
