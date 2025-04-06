@@ -34,7 +34,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	emit_signal("position_changed", plumb_bob.global_position)
+	emit_signal("position_changed", global_position - plumb_bob.global_position)
 	fishing_controls(delta)
 	return_to_stationary()
 
