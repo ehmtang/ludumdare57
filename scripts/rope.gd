@@ -9,6 +9,17 @@ var end_joint : PinJoint2D
 @export var segment_length = 10.0
 
 func _ready() -> void:
+	reset_rope()
+
+func reset_rope():
+	for segment in segments:
+		segment.queue_free()
+	segments.clear()
+	
+	for joint in joints:
+		joint.queue_free()
+	joints.clear()
+	print_tree_pretty()
 	if length >= 1:
 		var new_segment = segment_scene.instantiate()
 		add_child(new_segment)
@@ -36,6 +47,7 @@ func _ready() -> void:
 			new_joint.node_a = segments[-2].get_path()
 			new_joint.node_b = segments[-1].get_path()
 			joints.push_back(new_joint)
+	
 
 func _process(delta):
 	pass

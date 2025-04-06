@@ -1,9 +1,12 @@
 extends Node2D
+class_name Player
 var rigid_body
 
 signal released_bob(plumbob : PlumbBob)
 signal position_changed(new_position: Vector2)
+signal checkpoint_requested(position: Vector2)
 
+signal checkpoint_triggered(checkpoint : Checkpoint)
 
 var plumb_bob : PlumbBob = null
 
@@ -21,7 +24,7 @@ var plumb_bob_launched = false
 var progress_bar : ProgressBar = null
 
 var last_position: Vector2
-var checkpoint_positions : Array = []
+var checkpoints : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +33,6 @@ func _ready() -> void:
 	plumb_bob = $Plumbbob
 	progress_bar.visible = false
 	last_position = plumb_bob.global_position
-	checkpoint_positions.append(plumb_bob.global_position)
 	pass # Replace with function body.
 
 
@@ -41,8 +43,6 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("restore_checkpoint"):
 		return_to_last_checkpoint()
-		
-	return_to_stationary()
 
 func _physics_process(delta: float) -> void:
 	steering_controls(delta)
@@ -56,12 +56,8 @@ func fishing_controls(delta):
 	
 	# Create a checkpoint to return to if player becomes stuck
 	if Input.is_action_just_pressed("store_checkpoint"):
-		checkpoint_positions.append(plumb_bob.global_position)
-		var marker = load("res://scenes/checkpoint_flag/checkpoint_flag.tscn").instantiate()
-		marker.global_position = plumb_bob.global_position
-		get_parent().add_child(marker)
-		get_node("/root").print_tree_pretty()
-	
+		checkpoint_requested.emit(plumb_bob.global_position)
+		
 	# Change trajectory
 	if not is_charging:
 		if Input.is_action_pressed("move_up"):
@@ -90,6 +86,7 @@ func fishing_controls(delta):
 		is_charging = false
 		progress_bar.visible = false
 		arrow.visible = false
+		$Plumbbob.freeze = false
 		progress_bar.value = 0
 		release_plumb_bob()
 
@@ -106,6 +103,7 @@ func steering_controls(delta):
 			plumb_bob.steer(-1)
 		if Input.is_action_pressed("move_right"):
 			plumb_bob.steer(1)
+		return_to_stationary()
 
 func return_to_stationary():
 	var world_up = Vector2.UP
@@ -116,6 +114,7 @@ func return_to_stationary():
 	
 	if is_stationary and is_standing_upright:
 		plumb_bob_launched = false
+		plumb_bob.freeze = true
 		arrow.visible = true
 	
 	if is_stationary and not is_standing_upright:
@@ -123,8 +122,15 @@ func return_to_stationary():
 			plumb_bob.linear_velocity = Vector2(0,-350)
 		
 		
+func add_checkpoint(checkpoint : Checkpoint):
+	checkpoints.push_back(checkpoint)
+
+func get_checkpoints():
+	return checkpoints
+
+func set_checkpoints(_checkpoints):
+	checkpoints = _checkpoints.duplicate()
+
 func return_to_last_checkpoint():
-	plumb_bob.global_position = checkpoint_positions.back()
-	plumb_bob.linear_velocity = Vector2.ZERO
-	plumb_bob.rotation = 0
-	
+	if (checkpoints.size() > 0):
+		checkpoint_triggered.emit(checkpoints[-1])
