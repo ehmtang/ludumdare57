@@ -15,7 +15,7 @@ var direction : Vector2 = Vector2.ZERO
 var launch_force = 0
 var launch_inc = 1000
 var launch_min = 0
-var launch_max = 2000
+var launch_max = 500
 var is_charging : bool = false
 var plumb_bob_launched = false
 var progress_bar : ProgressBar = null
@@ -99,7 +99,12 @@ func return_to_stationary():
 	var alignment = world_up.dot(player_up)
 	var is_stationary = plumb_bob.linear_velocity.length_squared() < 0.1
 	var is_standing_upright = (1 - alignment < 0.1 and alignment > 0)
+	
 	if is_stationary and is_standing_upright:
 		plumb_bob_launched = false
 		arrow.visible = true
+	
+	if is_stationary and not is_standing_upright:
+		if Input.is_action_pressed("fish"):
+			plumb_bob.linear_velocity = Vector2(0,-350)
 		
