@@ -6,6 +6,7 @@ var steer_value : float
 @export var perp_drag_value : float
 @export var accel_force :  float
 @export var steer_factor :  float
+@export var grav_torque :  float
 
 var dir = Vector2.ZERO
 
@@ -41,6 +42,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	state.apply_central_force(accel_force * dir)
 	state.apply_central_force(-dir.dot(vel) * dir * drag_value)
-	state.apply_force(-dir_perp.dot(vel) * dir_perp * perp_drag_value, -dir * 1.0)
+	state.apply_force(-dir_perp.dot(vel) * dir_perp * perp_drag_value, -dir * 0.0)
+	state.apply_torque(dir.dot(Vector2.RIGHT) * grav_torque)
 	#draw_line(state.transform.get_origin(), state.transform.get_origin()+dir, Color.AQUA)
 	
