@@ -1,24 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6ab1ek0pkfs5"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ab1ek0pkfs5"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bxi45tpnt6rnu" path="res://assets/pmaterials/bob_pmat.tres" id="1_3jx2y"]
 [ext_resource type="Script" uid="uid://kwewr658y1ba" path="res://scripts/plumbbob.gd" id="1_jeeii"]
 [ext_resource type="Texture2D" uid="uid://dac00oyv5qyuk" path="res://assets/art/characters/astro_alien2.png" id="3_v0sn0"]
-[ext_resource type="Texture2D" uid="uid://d2byrpe580twl" path="res://assets/art/characters/alienBlue.png" id="4_v0sn0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
-atlas = ExtResource("4_v0sn0")
-region = Rect2(0, 0, 66, 96)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bsbt8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gmlin")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://b3vico8cwoajp" path="res://assets/art/characters/astro_alien.png" id="4_v0sn0"]
 
 [node name="Plumbbob" type="RigidBody2D"]
 collision_mask = 3
@@ -33,14 +18,14 @@ drag_value = 1.0
 perp_drag_value = 1.0
 steer_factor = 30000.0
 
-[node name="Plumbbob" type="Sprite2D" parent="."]
+[node name="Plum" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_v0sn0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="Bob" type="Sprite2D" parent="."]
+position = Vector2(0, -4.81)
 scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_bsbt8")
+texture = ExtResource("4_v0sn0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 2)

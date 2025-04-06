@@ -9,6 +9,8 @@ func _ready() -> void:
 	add_child(camera)
 	$Player.add_checkpoint($CheckpointFlag_Start)
 	$Player.return_to_last_checkpoint()
+	$Player.plumb_bob.get_child(0).visible = true
+	$Player.plumb_bob.get_child(1).visible = false
 	$CheckpointFlag_Start.set_active_state(Checkpoint.ActiveState.INACTIVE)
 func _process(delta):
 	pass
