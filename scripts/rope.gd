@@ -3,6 +3,7 @@ class_name Rope
 
 @onready var segments = Array([], TYPE_OBJECT, "RigidBody2D", null)
 @onready var joints = Array([], TYPE_OBJECT, "PinJoint2D", null)
+var end_joint : PinJoint2D
 @onready var segment_scene = preload("res://scenes/rope/rope_segment.tscn")
 @export var length = 5
 @export var segment_length = 10.0
@@ -35,15 +36,26 @@ func _ready() -> void:
 			new_joint.node_a = segments[-2].get_path()
 			new_joint.node_b = segments[-1].get_path()
 			joints.push_back(new_joint)
-	print_tree_pretty()
 
 func _process(delta):
-	print(global_position)	
-	print(segments[0].global_position)
-	print(segments[1].global_position)
-	
+	pass
+
 func get_end_position():
 	return segments[-1].global_position + Vector2.DOWN.rotated(segments[-1].rotation) * segment_length
 	
 func get_end_body():
 	return segments[-1]
+	#
+func disconnect_rope():
+	if (end_joint != null):
+		end_joint.queue_free()
+		end_joint = null	
+
+func connect_rope_to_node(node : Node2D):
+	disconnect_rope()
+	var new_joint = PinJoint2D.new()
+	add_child(new_joint)
+	new_joint.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * segment_length
+	new_joint.node_a = segments[-1].get_path()
+	new_joint.node_b = node.get_path()
+	end_joint = new_joint

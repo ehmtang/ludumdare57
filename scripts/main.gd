@@ -7,11 +7,11 @@ func _ready() -> void:
 	camera.set_anchor_mode(Camera2D.ANCHOR_MODE_DRAG_CENTER)
 	camera.zoom = Vector2(0.9, 0.9)
 	add_child(camera)
-	var rope_player_join = PinJoint2D.new()
-	add_child(rope_player_join)
-	rope_player_join.position = $Rope.get_end_position()
-	rope_player_join.node_a = $Rope.get_end_body().get_path()
-	rope_player_join.node_b = $Player/Plumbbob.get_path()
+	$Rope.connect_rope_to_node($Player/Plumbbob)
+	
+func _process(delta):
+	if Input.is_key_pressed(KEY_B):
+		$Rope.disconnect_rope()
 	
 func _on_player_released_bob(plumbbob : PlumbBob) -> void:
 	camera.set_target(plumbbob)

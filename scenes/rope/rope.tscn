@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3nc0p5bhjpye"]
+[gd_scene load_steps=6 format=3 uid="uid://c3nc0p5bhjpye"]
 
 [ext_resource type="Script" uid="uid://cc1sglsn6u48n" path="res://scripts/rope.gd" id="1_shl0t"]
 [ext_resource type="Texture2D" uid="uid://bc5l2xgth7vln" path="res://icon.svg" id="2_shl0t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ow5a4"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jwjki"]
+friction = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwjki"]
+radius = 2.0
+
 [node name="Rope" type="Node2D"]
 script = ExtResource("1_shl0t")
+length = 10
 
 [node name="RopeTop" type="StaticBody2D" parent="."]
 collision_layer = 0
@@ -18,3 +25,12 @@ shape = SubResource("CircleShape2D_ow5a4")
 [node name="Icon" type="Sprite2D" parent="RopeTop/CollisionShape2D"]
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("2_shl0t")
+
+[node name="RopeEnd" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_jwjki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeEnd"]
+shape = SubResource("CircleShape2D_jwjki")

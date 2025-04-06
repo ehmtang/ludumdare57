@@ -24,7 +24,7 @@ tile_map_data = PackedByteArray("AAAAAAQAAAAAAAAAAAAAAAUAAAABAAAAAAAAAAYAAAABAAA
 tile_set = SubResource("TileSet_6q06x")
 
 [node name="Player" parent="." instance=ExtResource("1_hyk8p")]
-position = Vector2(37, 102)
+position = Vector2(37, 114)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -32,9 +32,9 @@ tile_map_data = PackedByteArray("AAAHAAQAAAAAAAQAAAAGAAQAAAAEAAMAAAAFAAQAAAAEAAM
 tile_set = ExtResource("2_iuonh")
 
 [node name="Rope" parent="." instance=ExtResource("6_ow5a4")]
-position = Vector2(37, 130)
+position = Vector2(37, 122)
 rotation = 0.129845
-length = 101
+length = 1000
 
 [connection signal="released_bob" from="Player" to="." method="_on_player_released_bob"]
 
