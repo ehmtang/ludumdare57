@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://crocof65bu224"]
+[gd_scene load_steps=9 format=4 uid="uid://crocof65bu224"]
 
 [ext_resource type="PackedScene" uid="uid://bjp4qygfqfx2" path="res://scenes/player/player.tscn" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://hu5gam3ut5nx" path="res://scripts/main.gd" id="1_k2fmo"]
 [ext_resource type="TileSet" uid="uid://cg0tpuwvnj7xp" path="res://assets/tileset/world_set.tres" id="2_iuonh"]
 [ext_resource type="Texture2D" uid="uid://urk053tjqvp1" path="res://assets/art/tilesheet/backgrounds.png" id="4_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://ct1i0bd51c0gx" path="res://scenes/win_bob/win_bob.tscn" id="4_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://c3nc0p5bhjpye" path="res://scenes/rope/rope.tscn" id="6_ow5a4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3cfh"]
@@ -25,6 +26,9 @@ tile_set = SubResource("TileSet_6q06x")
 
 [node name="Player" parent="." instance=ExtResource("1_hyk8p")]
 position = Vector2(37, 114)
+
+[node name="WinBob" parent="." instance=ExtResource("4_ow5a4")]
+position = Vector2(224, 112)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(0.5, 0.5)
