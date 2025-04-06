@@ -29,10 +29,9 @@ center_of_mass_mode = 1
 continuous_cd = 2
 angular_damp = 3.09
 script = ExtResource("1_jeeii")
-drag_value = 0.02
-perp_drag_value = 300.0
-steer_factor = 100000.0
-grav_torque = 10000.0
+drag_value = 1.0
+perp_drag_value = 1.0
+steer_factor = 30000.0
 
 [node name="Plumbbob" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

@@ -35,12 +35,13 @@ func steer(value : float):
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	state.apply_torque(steer_value * steer_factor)
+	#state.apply_central_force(steer_value * steer_factor * Vector2.RIGHT)
 	steer_value = 0
 	var vel = state.linear_velocity
 	var dir = state.transform.basis_xform(Vector2.UP)
 	var dir_perp = state.transform.basis_xform(Vector2.LEFT)
 
-	state.apply_central_force(accel_force * dir)
+	state.apply_central_force(accel_force * dir.dot(Vector2.RIGHT) * Vector2.RIGHT)
 	state.apply_central_force(-dir.dot(vel) * dir * drag_value)
 	state.apply_force(-dir_perp.dot(vel) * dir_perp * perp_drag_value, -dir * 0.0)
 	state.apply_torque(dir.dot(Vector2.RIGHT) * grav_torque)

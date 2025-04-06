@@ -5,6 +5,7 @@ class_name Rope
 @onready var joints = Array([], TYPE_OBJECT, "PinJoint2D", null)
 @onready var segment_scene = preload("res://scenes/rope/rope_segment.tscn")
 @export var length = 5
+@export var segment_length = 10.0
 
 func _ready() -> void:
 	if length >= 1:
@@ -24,12 +25,12 @@ func _ready() -> void:
 		for i : int in range(length - 1):
 			var new_segment = segment_scene.instantiate()
 			add_child(new_segment)
-			new_segment.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * 41.0
+			new_segment.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * segment_length
 			new_segment.rotation = PI * ((i+1)%2) - PI/2
 			var new_joint = PinJoint2D.new()
 			#new_joint.bias = 1.0
 			add_child(new_joint)
-			new_joint.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * 40.5
+			new_joint.position = segments.back().position + Vector2.DOWN.rotated(segments.back().rotation) * segment_length
 			segments.push_back(new_segment)
 			new_joint.node_a = segments[-2].get_path()
 			new_joint.node_b = segments[-1].get_path()
@@ -42,7 +43,7 @@ func _process(delta):
 	print(segments[1].global_position)
 	
 func get_end_position():
-	return segments[-1].global_position + Vector2.DOWN.rotated(segments[-1].rotation) * 40.0
+	return segments[-1].global_position + Vector2.DOWN.rotated(segments[-1].rotation) * segment_length
 	
 func get_end_body():
 	return segments[-1]

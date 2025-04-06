@@ -9,11 +9,8 @@
 script = ExtResource("1_p47bc")
 
 [node name="Plumbbob" parent="." instance=ExtResource("3_lvxji")]
+mass = 4.0
 angular_damp = 0.5
-drag_value = 0.3
-perp_drag_value = 20.0
-accel_force = 1000.0
-steer_factor = 30000.0
 
 [node name="Charge" type="ProgressBar" parent="Plumbbob"]
 offset_left = -35.0

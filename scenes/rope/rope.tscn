@@ -18,9 +18,3 @@ shape = SubResource("CircleShape2D_ow5a4")
 [node name="Icon" type="Sprite2D" parent="RopeTop/CollisionShape2D"]
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("2_shl0t")
-
-[node name="Sprite2D" type="Sprite2D" parent="RopeTop"]
-position = Vector2(20, 0)
-rotation = -1.56905
-scale = Vector2(0.016, 0.313)
-texture = ExtResource("2_shl0t")
