@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cllmevd4urur8"]
+[gd_scene load_steps=3 format=3 uid="uid://cllmevd4urur8"]
 
 [ext_resource type="Script" uid="uid://dvm2yc6qcotet" path="res://scripts/game_controller.gd" id="1_hiwhh"]
+[ext_resource type="AudioStream" uid="uid://bl43j5kybnup" path="res://assets/audio/mucking.wav" id="2_420aq"]
 
 [node name="GameController" type="Node" node_paths=PackedStringArray("world_2d", "gui")]
 script = ExtResource("1_hiwhh")
@@ -14,3 +15,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_420aq")
+volume_db = -21.611
+autoplay = true

@@ -9,7 +9,7 @@ var plumb_bob : PlumbBob = null
 
 var angle_speed : float = 0.05
 var arrow : Sprite2D = null
-var angle : float = 0
+var launch_angle : float = 0
 var orbit_radius : int = 50 
 var direction : Vector2 = Vector2.ZERO
 var launch_force = 0
@@ -20,12 +20,15 @@ var is_charging : bool = false
 var plumb_bob_launched = false
 var progress_bar : ProgressBar = null
 
+var last_position: Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	arrow = $Arrow
-	progress_bar = $Charge
+	arrow = $Plumbbob/Arrow
+	progress_bar = $Plumbbob/Charge
 	plumb_bob = $Plumbbob
 	progress_bar.visible = false
+	last_position = plumb_bob.global_position
 	pass # Replace with function body.
 
 
@@ -33,26 +36,30 @@ func _ready() -> void:
 func _process(delta):
 	emit_signal("position_changed", plumb_bob.global_position)
 	fishing_controls(delta)
+	return_to_stationary()
 
 func _physics_process(delta: float) -> void:
 	steering_controls(delta)
+	last_position = plumb_bob.global_position
+	
 
 func fishing_controls(delta):
 	# Skip if launched
 	if plumb_bob_launched:
 		return
+		
 	# Change trajectory
 	if not is_charging:
 		if Input.is_action_pressed("move_up"):
-			angle -= angle_speed
+			launch_angle -= angle_speed
 		if Input.is_action_pressed("move_down"):
-			angle += angle_speed
+			launch_angle += angle_speed
 	
-	angle = clamp(angle, 0.0, PI/2)
-	direction = Vector2.UP.rotated(angle).normalized()
+	launch_angle = clamp(launch_angle, -PI/2, PI/2)
+	direction = Vector2.UP.rotated(launch_angle).normalized()
 	var orbit_position = direction * orbit_radius
 	arrow.position = orbit_position
-	arrow.rotation = angle
+	arrow.rotation = launch_angle
 	
 	# Charging logic
 	if Input.is_action_just_pressed("fish"):
@@ -68,6 +75,7 @@ func fishing_controls(delta):
 	if is_charging and Input.is_action_just_released("fish"):
 		is_charging = false
 		progress_bar.visible = false
+		arrow.visible = false
 		progress_bar.value = 0
 		release_plumb_bob()
 
@@ -84,3 +92,14 @@ func steering_controls(delta):
 			plumb_bob.steer(-1)
 		if Input.is_action_pressed("move_right"):
 			plumb_bob.steer(1)
+
+func return_to_stationary():
+	var world_up = Vector2.UP
+	var player_up = Vector2.UP.rotated(plumb_bob.global_rotation).normalized()
+	var alignment = world_up.dot(player_up)
+	var is_stationary = plumb_bob.linear_velocity.length_squared() < 0.1
+	var is_standing_upright = (1 - alignment < 0.1 and alignment > 0)
+	if is_stationary and is_standing_upright:
+		plumb_bob_launched = false
+		arrow.visible = true
+		
