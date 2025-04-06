@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ldibpmpcy13f"]
+
+[ext_resource type="Texture2D" uid="uid://b51oj46c4vdq1" path="res://assets/art/icons/checkpoint_flag.png" id="1_bk817"]
+[ext_resource type="Script" uid="uid://bh5lf3ygous68" path="res://scripts/checkpoint_flag.gd" id="1_tgj3m"]
+
+[node name="CheckpointFlag" type="Node2D"]
+script = ExtResource("1_tgj3m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bk817")

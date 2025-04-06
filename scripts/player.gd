@@ -57,6 +57,9 @@ func fishing_controls(delta):
 	# Create a checkpoint to return to if player becomes stuck
 	if Input.is_action_just_pressed("store_checkpoint"):
 		checkpoint_positions.append(plumb_bob.global_position)
+		var marker = load("res://scenes/checkpoint_flag/checkpoint_flag.tscn").instantiate()
+		marker.global_position = plumb_bob.global_position
+		get_tree().current_scene.add_child(marker)
 	
 	# Change trajectory
 	if not is_charging:
