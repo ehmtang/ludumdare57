@@ -1,10 +1,10 @@
 extends MarginContainer
 
-@onready var label = $NinePatchRect/MarginContainer/Label
+@onready var label = $MarginContainer/Label
 @onready var timer = $Timer
 
 const max_width = 256
-var text = ""
+var text : String = ""
 var letter_index = 0
 var letter_time = 0.03
 var space_time = 0.06
@@ -12,15 +12,6 @@ var punctuation_time = 0.2
 
 signal finished_displaying()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func display_text(text_to_display: String):
 	text = text_to_display
 	label.text = text_to_display
@@ -34,28 +25,28 @@ func display_text(text_to_display: String):
 		await resized
 		custom_minimum_size.y = size.y
 	
-	global_position.x -= size.x /2
-	global_position.y -= size.y + 24
-	
+	global_position.x += size.x / 2
+	global_position.y += size.y - 8
 	label.text = ""
 	_display_letter()
 
 func _display_letter():
-	label.text += text[letter_index]
-	letter_index += 1
 	if letter_index >= text.length():
 		finished_displaying.emit()
 		return
-	
-	match text[letter_index]:
+
+	var char = text[letter_index]
+	label.text += char
+	letter_index += 1
+
+	match char:
 		"!", ".", ",", "?":
 			timer.start(punctuation_time)
 		" ":
 			timer.start(space_time)
 		_:
 			timer.start(letter_time)
-		
 
 
 func _on_timer_timeout() -> void:
-	pass # Replace with function body.
+	_display_letter()

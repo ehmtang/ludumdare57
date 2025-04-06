@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ct1i0bd51c0gx"]
 
 [ext_resource type="Script" uid="uid://dqe5y3vvrlkda" path="res://scripts/win_bob.gd" id="1_5j3d6"]
-[ext_resource type="Texture2D" uid="uid://dac00oyv5qyuk" path="res://assets/art/characters/astro_alien2.png" id="1_tymp7"]
+[ext_resource type="Texture2D" uid="uid://b3vico8cwoajp" path="res://assets/art/characters/astro_alien.png" id="2_5j3d6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tymp7"]
 radius = 15.0333
@@ -11,7 +11,7 @@ script = ExtResource("1_5j3d6")
 
 [node name="AstroAlien2" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("1_tymp7")
+texture = ExtResource("2_5j3d6")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -1,5 +1,10 @@
 extends Node2D
 
+var lines : Array[String] = [
+	"Hey Plum, thanks for getting me",
+	"I was getting lonely...",
+	"Let's go home and have some cocoa."
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,5 +19,4 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is PlumbBob:
-		print("Player entered:", body.name)
-		
+		DialogManager.start_dialog(global_position, lines)
