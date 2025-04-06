@@ -21,6 +21,7 @@ var plumb_bob_launched = false
 var progress_bar : ProgressBar = null
 
 var last_position: Vector2
+var checkpoint_positions : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +30,7 @@ func _ready() -> void:
 	plumb_bob = $Plumbbob
 	progress_bar.visible = false
 	last_position = plumb_bob.global_position
+	checkpoint_positions.append(plumb_bob.global_position)
 	pass # Replace with function body.
 
 
@@ -36,6 +38,10 @@ func _ready() -> void:
 func _process(delta):
 	emit_signal("position_changed", global_position - plumb_bob.global_position)
 	fishing_controls(delta)
+
+	if Input.is_action_just_pressed("restore_checkpoint"):
+		return_to_last_checkpoint()
+		
 	return_to_stationary()
 
 func _physics_process(delta: float) -> void:
@@ -47,7 +53,11 @@ func fishing_controls(delta):
 	# Skip if launched
 	if plumb_bob_launched:
 		return
-		
+	
+	# Create a checkpoint to return to if player becomes stuck
+	if Input.is_action_just_pressed("store_checkpoint"):
+		checkpoint_positions.append(plumb_bob.global_position)
+	
 	# Change trajectory
 	if not is_charging:
 		if Input.is_action_pressed("move_up"):
@@ -108,3 +118,9 @@ func return_to_stationary():
 		if Input.is_action_pressed("fish"):
 			plumb_bob.linear_velocity = Vector2(0,-350)
 		
+		
+func return_to_last_checkpoint():
+	plumb_bob.global_position = checkpoint_positions.back()
+	plumb_bob.linear_velocity = Vector2.ZERO
+	plumb_bob.rotation = 0
+	
