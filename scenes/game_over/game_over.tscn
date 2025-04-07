@@ -38,7 +38,7 @@ texture = ExtResource("2_anb0t")
 position = Vector2(347, 244)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_vtso4")
-frame_progress = 0.781411
+frame_progress = 0.994654
 speed_scale = 0.5
 
 [node name="Label" type="Label" parent="."]
@@ -56,3 +56,17 @@ text = "Thanks Plum, I made this for you."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 555.0
+offset_top = 392.0
+offset_right = 660.0
+offset_bottom = 439.0
+theme_override_colors/font_color = Color(0.396078, 0.313726, 0.341176, 1)
+theme_override_colors/font_shadow_color = Color(0.427451, 0.552941, 0.541176, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("4_vtso4")
+theme_override_font_sizes/font_size = 21
+text = "@Broccolly
+@ehmtang"
