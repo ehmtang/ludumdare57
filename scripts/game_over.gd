@@ -4,6 +4,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play()
+	Global.game_controller.remove_gui_scene()
 	pass # Replace with function body.
 
 

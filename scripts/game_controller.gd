@@ -43,3 +43,7 @@ func change_2d_scene(new_scene: String, delete: bool = true, keep_running: bool 
 
 	current_2d_scene = load(new_scene).instantiate()
 	world_2d.add_child(current_2d_scene)
+
+func remove_gui_scene():
+	current_gui_scene.queue_free()
+	gui.queue_redraw()

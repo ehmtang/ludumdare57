@@ -38,7 +38,7 @@ texture = ExtResource("2_anb0t")
 position = Vector2(347, 244)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_vtso4")
-frame_progress = 0.962425
+frame_progress = 0.781411
 speed_scale = 0.5
 
 [node name="Label" type="Label" parent="."]
