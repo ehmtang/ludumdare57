@@ -1,10 +1,13 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cg0tpuwvnj7xp"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cg0tpuwvnj7xp"]
 
 [ext_resource type="Texture2D" uid="uid://lliq0onkswlk" path="res://assets/art/tilesheet/grass_sheet.png" id="1_48thl"]
 [ext_resource type="Texture2D" uid="uid://c15q3c8yjnkyq" path="res://assets/art/tilesheet/dirt_sheet.png" id="2_mt1bo"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_mt1bo"]
 tile_data = PackedInt32Array(0, 0, 3, 65536, 65536, 4, 131072, 0, 1610612739, 1, 0, 5, 65537, 0, 5, 131073, 0, 5, 2, 0, 4, 65538, 65536, 4, 131074, 0, 805306371)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_etkmy"]
+tile_data = PackedInt32Array(0, 196608, 268435458, 1, 262144, 1, 2, 262144, 1, 3, 196608, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mt1bo"]
 texture = ExtResource("1_48thl")
@@ -128,3 +131,4 @@ physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_mt1bo")
 sources/1 = SubResource("TileSetAtlasSource_etkmy")
 pattern_0 = SubResource("TileMapPattern_mt1bo")
+pattern_1 = SubResource("TileMapPattern_etkmy")
