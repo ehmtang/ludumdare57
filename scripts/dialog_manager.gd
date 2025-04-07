@@ -24,7 +24,6 @@ func _show_text_box():
 	text_box = text_box_scene.instantiate()
 	text_box.finished_displaying.connect(_on_text_box_finished_displaying)
 	Global.game_controller.current_2d_scene.add_child(text_box)
-	get_node("/root").print_tree_pretty()
 	text_box.display_text(dialog_lines[current_line_index])
 	can_advance_line = false
 	
