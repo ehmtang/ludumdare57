@@ -158,7 +158,7 @@ func return_to_stationary():
 	
 	if is_stationary and not is_standing_upright:
 		if Input.is_action_pressed("fish"):
-			plumb_bob.linear_velocity = Vector2(0,-350)
+			plumb_bob.linear_velocity = Vector2(0,-250)
 
 func freeze_player():
 	plumb_bob.freeze = true
