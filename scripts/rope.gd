@@ -9,8 +9,9 @@ var end_joint : PinJoint2D
 @export var segment_length = 10.0
 
 func _ready() -> void:
-	reset_rope()
-
+	#reset_rope()
+	pass
+	
 func reset_rope():
 	disconnect_rope()
 	for segment in segments:

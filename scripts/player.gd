@@ -11,6 +11,7 @@ signal checkpoint_triggered(checkpoint : Checkpoint)
 signal area_entered(area : Area2D)
 signal goto_arrive()
 
+@export var rope_offset : Vector2
 var goto_checkpoint : Checkpoint
 
 var is_player : bool = true # just so can be idd as player in collisions by flags

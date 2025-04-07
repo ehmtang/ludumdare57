@@ -35,15 +35,18 @@ tile_set = ExtResource("2_iuonh")
 
 [node name="CheckpointFlag_Start" parent="." instance=ExtResource("5_6q06x")]
 position = Vector2(165, 109)
+rope_length = 50
 
 [node name="WinBob" parent="." instance=ExtResource("4_ow5a4")]
 position = Vector2(822, 1161)
 
 [node name="CheckpointFlag" parent="." instance=ExtResource("5_6q06x")]
 position = Vector2(340, 422)
+rope_length = 50
 
 [node name="CheckpointFlag2" parent="." instance=ExtResource("5_6q06x")]
 position = Vector2(465, 983)
+rope_length = 50
 
 [connection signal="checkpoint_activated" from="Player" to="." method="_on_player_checkpoint_activated" flags=3]
 [connection signal="checkpoint_requested" from="Player" to="." method="_on_player_checkpoint_requested"]

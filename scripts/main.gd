@@ -41,7 +41,7 @@ func _on_player_checkpoint_activated(checkpoint : Checkpoint): # when touched
 func _on_player_checkpoint_triggered(checkpoint : Checkpoint): #when return to cp
 	var player : Player
 	player = $Player
-	player.freeze_and_goto_position(checkpoint.get_anchor().global_position)
+	player.freeze_and_goto_position(checkpoint.get_anchor().global_position + $Player.rope_offset)
 	checkpoint.get_rope().disconnect_rope()
 	player.goto_checkpoint = checkpoint
 
