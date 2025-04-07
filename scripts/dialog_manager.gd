@@ -1,5 +1,7 @@
 extends Node
 
+signal dialog_finished
+
 @onready var text_box_scene = preload("res://scenes/speech_bubble/speech_bubble.tscn")
 
 var dialog_lines: Array[String] = []
@@ -41,6 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if current_line_index >= dialog_lines.size():
 			is_dialog_active = false
 			current_line_index = 0
+			dialog_finished.emit()
 			return
 		
 		_show_text_box()
