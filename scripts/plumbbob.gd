@@ -1,14 +1,14 @@
 extends RigidBody2D
 class_name  PlumbBob
 
+signal area_entered(area : Area2D)
+
 var steer_value : float
 @export var drag_value : float
 @export var perp_drag_value : float
 @export var accel_force :  float
 @export var steer_factor :  float
 @export var grav_torque :  float
-
-var dir = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

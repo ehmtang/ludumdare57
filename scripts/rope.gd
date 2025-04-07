@@ -12,6 +12,7 @@ func _ready() -> void:
 	reset_rope()
 
 func reset_rope():
+	disconnect_rope()
 	for segment in segments:
 		segment.queue_free()
 	segments.clear()
@@ -19,7 +20,7 @@ func reset_rope():
 	for joint in joints:
 		joint.queue_free()
 	joints.clear()
-	print_tree_pretty()
+	#print_tree_pretty()
 	if length >= 1:
 		var new_segment = segment_scene.instantiate()
 		add_child(new_segment)

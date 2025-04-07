@@ -38,8 +38,16 @@ position = Vector2(165, 109)
 [node name="WinBob" parent="." instance=ExtResource("4_ow5a4")]
 position = Vector2(77, 110)
 
+[node name="CheckpointFlag" parent="." instance=ExtResource("5_6q06x")]
+position = Vector2(432, 351)
+
+[node name="CheckpointFlag2" parent="." instance=ExtResource("5_6q06x")]
+position = Vector2(342, 526)
+
+[connection signal="checkpoint_activated" from="Player" to="." method="_on_player_checkpoint_activated" flags=3]
 [connection signal="checkpoint_requested" from="Player" to="." method="_on_player_checkpoint_requested"]
 [connection signal="checkpoint_triggered" from="Player" to="." method="_on_player_checkpoint_triggered"]
-[connection signal="released_bob" from="Player" to="." method="_on_player_released_bob"]
+[connection signal="goto_arrive" from="Player" to="." method="_on_player_goto_arrive"]
+[connection signal="released_bob" from="Player" to="." method="_on_player_released_bob" flags=3]
 
 [editable path="Player"]

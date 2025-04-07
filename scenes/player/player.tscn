@@ -9,7 +9,10 @@
 script = ExtResource("1_p47bc")
 
 [node name="Plumbbob" parent="." instance=ExtResource("3_lvxji")]
+collision_mask = 11
 mass = 4.0
+contact_monitor = true
+max_contacts_reported = 8
 angular_damp = 0.5
 
 [node name="Charge" type="ProgressBar" parent="Plumbbob"]
@@ -27,3 +30,6 @@ texture = ExtResource("3_gmlin")
 
 [node name="JumpAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lvxji")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="goto_arrive" from="." to="." method="_on_goto_arrive"]

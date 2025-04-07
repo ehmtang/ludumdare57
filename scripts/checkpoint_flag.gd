@@ -1,8 +1,8 @@
-extends Node2D
+extends Area2D
 class_name Checkpoint
 
-signal checkpoint_activated(checkpoint : Checkpoint)
-
+#signal checkpoint_activated(checkpoint : Checkpoint)
+@export var checkpoint_id : int = 0
 enum ActiveState {INACTIVE, USED, ACTIVE}
 
 var checkpoint_positions: Array = []
@@ -11,6 +11,7 @@ var active_state : ActiveState = ActiveState.INACTIVE
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reset_rope()
+	set_active_state(ActiveState.INACTIVE)
 	pass # Replace with function body.
 
 
@@ -24,6 +25,9 @@ func reset_rope():
 func get_rope() -> Rope:
 	return $Rope
 	
+func get_anchor():
+	return $Anchor	
+
 func set_active_state(state : ActiveState):
 	active_state = state
 	match active_state:
@@ -33,3 +37,10 @@ func set_active_state(state : ActiveState):
 			$Sprite2D.texture = load("res://assets/art/icons/checkpoint_flag_used.png")
 		ActiveState.ACTIVE:
 			$Sprite2D.texture = load("res://assets/art/icons/checkpoint_flag_active.png")
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if (body is RigidBody2D):
+		var rb : RigidBody2D = body
+		if (rb.get_parent().get("is_player")): 
+			rb.get_parent().area_entered.emit(self)
