@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b46apykr2mj0e"]
+[gd_scene load_steps=7 format=3 uid="uid://b46apykr2mj0e"]
 
 [ext_resource type="Texture2D" uid="uid://dav3m0eklr2wb" path="res://assets/art/tilesheet/cocoa-Sheet.png" id="1_3j056"]
+[ext_resource type="Script" uid="uid://dgvg186ati58d" path="res://scripts/game_over.gd" id="1_sseyc"]
+[ext_resource type="Texture2D" uid="uid://2beacxuckyqm" path="res://assets/art/background/game_over_bg.png" id="2_anb0t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sseyc"]
 atlas = ExtResource("1_3j056")
-region = Rect2(0, 0, 128, 64)
+region = Rect2(0, 0, 256, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anb0t"]
 atlas = ExtResource("1_3j056")
-region = Rect2(128, 0, 128, 64)
+region = Rect2(256, 0, 256, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vtso4"]
 animations = [{
@@ -25,10 +27,15 @@ animations = [{
 }]
 
 [node name="GameOver" type="Node2D"]
+script = ExtResource("1_sseyc")
+
+[node name="GameOverBg" type="Sprite2D" parent="."]
+position = Vector2(360, 240)
+texture = ExtResource("2_anb0t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(340, 208)
-scale = Vector2(2, 2)
+position = Vector2(347, 244)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_vtso4")
-frame_progress = 0.282473
+frame_progress = 0.626213
 speed_scale = 0.5
