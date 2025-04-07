@@ -4,7 +4,7 @@ extends Node
 
 var dialog_lines: Array[String] = []
 var current_line_index = 0
-var text_box
+var text_box : MarginContainer
 var text_box_position:Vector2
 
 var is_dialog_active = false
@@ -22,6 +22,7 @@ func start_dialog(position: Vector2, lines: Array[String]):
 	
 func _show_text_box():
 	text_box = text_box_scene.instantiate()
+	text_box.global_position = text_box_position
 	text_box.finished_displaying.connect(_on_text_box_finished_displaying)
 	Global.game_controller.current_2d_scene.add_child(text_box)
 	text_box.display_text(dialog_lines[current_line_index])
