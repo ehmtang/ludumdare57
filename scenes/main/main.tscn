@@ -143,7 +143,7 @@ bob_texture = ExtResource("10_a8run")
 
 [node name="GuideBob3" parent="." instance=ExtResource("5_b1x3f")]
 position = Vector2(1597, 993)
-lines = Array[String](["Sorry, I'm not Bob. ", "People tell me, that I look just like him!", "I reckon the devs got lazy, started using the same sprite for all of us.", "You wanna launch yourself to the right."])
+lines = Array[String](["Sorry, I'm not Bob. ", "People tell me, that I look just like him!", "I reckon the devs got lazy, started using the same sprite for all of us.", "You wanna launch yourself to the right! Bob's there."])
 
 [node name="GuideBob4" parent="." instance=ExtResource("5_b1x3f")]
 position = Vector2(486, 2278)
