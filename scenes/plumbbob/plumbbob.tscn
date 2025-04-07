@@ -7,16 +7,16 @@
 
 [node name="Plumbbob" type="RigidBody2D"]
 collision_mask = 3
-mass = 10.0
+mass = 20.0
 physics_material_override = ExtResource("1_3jx2y")
-gravity_scale = 0.6
+gravity_scale = 0.9
 center_of_mass_mode = 1
+center_of_mass = Vector2(0, 10)
 continuous_cd = 2
 angular_damp = 3.09
 script = ExtResource("1_jeeii")
-drag_value = 1.0
-perp_drag_value = 1.0
-steer_factor = 1000.0
+accel_force = 1000.0
+steer_factor = 18000.0
 
 [node name="Plum" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -29,4 +29,4 @@ texture = ExtResource("4_v0sn0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 2)
-polygon = PackedVector2Array(-13, 1, -12, 24, 11, 24, 13, 2, 10, -22, 0, -31, -10, -22)
+polygon = PackedVector2Array(-13, 1, -15, 20, 15, 20, 13, 2, 10, -22, 0, -31, -10, -22)

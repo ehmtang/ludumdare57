@@ -53,3 +53,4 @@ func _on_player_goto_arrive() -> void:
 			old_checkpoint.get_rope().connect_rope_to_node(checkpoint.get_anchor())
 		checkpoint.reset_rope()
 		checkpoint.get_rope().connect_rope_to_node($Player/Plumbbob)
+		$Player.attached_rope = checkpoint.get_rope()

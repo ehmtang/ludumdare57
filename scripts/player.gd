@@ -12,6 +12,8 @@ signal area_entered(area : Area2D)
 signal goto_arrive()
 
 @export var rope_offset : Vector2
+@export var unroped_ratio : float
+
 var goto_checkpoint : Checkpoint
 
 var is_player : bool = true # just so can be idd as player in collisions by flags
@@ -26,7 +28,7 @@ var direction : Vector2 = Vector2.ZERO
 var launch_force = 0
 var launch_inc = 1000
 var launch_min = 0
-var launch_max = 1500
+var launch_max = 1000
 var is_charging : bool = false
 var plumb_bob_launched = false
 var progress_bar : ProgressBar = null
@@ -40,6 +42,8 @@ var goto_start : Vector2
 var goto_start_angle : float
 var goto_lerp : float
 var goto_rate : float = 2.0
+
+var attached_rope : Rope
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -117,6 +121,8 @@ func release_plumb_bob():
 	arrow.visible = false
 	$Plumbbob.freeze = false
 	progress_bar.value = 0
+	if (attached_rope == null):
+		launch_force *= unroped_ratio
 	plumb_bob.launch(direction * launch_force)
 	plumb_bob_launched=true
 	released_bob.emit(plumb_bob)
@@ -125,11 +131,20 @@ func release_plumb_bob():
 
 func steering_controls(delta):
 	if (plumb_bob_launched):
-		if Input.is_action_pressed("move_left"):
-			plumb_bob.steer(-1)
-		if Input.is_action_pressed("move_right"):
-			plumb_bob.steer(1)
-		return_to_stationary()
+		if (attached_rope != null):
+			if Input.is_action_pressed("move_left"):
+				plumb_bob.force(-1)
+			if Input.is_action_pressed("move_right"):
+				plumb_bob.force(1)
+			if Input.is_action_pressed("break_rope"):
+				attached_rope.disconnect_rope()
+				attached_rope = null
+		else:
+			if Input.is_action_pressed("move_left"):
+				plumb_bob.steer(1)
+			if Input.is_action_pressed("move_right"):
+				plumb_bob.steer(-1)	
+			return_to_stationary()
 
 func return_to_stationary():
 	var world_up = Vector2.UP

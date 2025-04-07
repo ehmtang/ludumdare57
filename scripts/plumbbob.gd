@@ -4,6 +4,7 @@ class_name  PlumbBob
 signal area_entered(area : Area2D)
 
 var steer_value : float
+var force_value : float
 @export var drag_value : float
 @export var perp_drag_value : float
 @export var accel_force :  float
@@ -29,21 +30,25 @@ func launch(value : Vector2) -> void:
 func steer(value : float):
 	steer_value += value
 
+func force(value : float):
+	force_value += value
+
 #func _draw():
 	#draw_circle(Vector2.ZERO, 20, Color.RED)
 	#draw_circle(dir*100, 20, Color.BLUE)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	#state.apply_torque(steer_value * steer_factor)
-	state.apply_central_force(steer_value * steer_factor * Vector2.RIGHT)
+	state.apply_torque(steer_value * steer_factor)
+	state.apply_central_force(accel_force * force_value * Vector2.RIGHT)
 	steer_value = 0
-	#var vel = state.linear_velocity
-	#var dir = state.transform.basis_xform(Vector2.UP)
-	#var dir_perp = state.transform.basis_xform(Vector2.LEFT)
+	force_value = 0
+	var vel = state.linear_velocity
+	var dir = state.transform.basis_xform(Vector2.UP)
+	var dir_perp = state.transform.basis_xform(Vector2.LEFT)
 
 	#state.apply_central_force(accel_force * dir.dot(Vector2.RIGHT) * Vector2.RIGHT)
-	#state.apply_central_force(-dir.dot(vel) * dir * drag_value)
-	#state.apply_force(-dir_perp.dot(vel) * dir_perp * perp_drag_value, -dir * 0.0)
+	state.apply_central_force(-dir.dot(vel) * dir * drag_value)
+	state.apply_force(-dir_perp.dot(vel) * dir_perp * perp_drag_value, -dir * 0.0)
 	#state.apply_torque(dir.dot(Vector2.RIGHT) * grav_torque)
 	#draw_line(state.transform.get_origin(), state.transform.get_origin()+dir, Color.AQUA)
 	
