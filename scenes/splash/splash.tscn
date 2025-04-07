@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b61q5ovhxbcor"]
+[gd_scene load_steps=11 format=4 uid="uid://b61q5ovhxbcor"]
 
 [ext_resource type="Script" uid="uid://7hfpvxbw75py" path="res://scripts/splash.gd" id="1_wwhxh"]
 [ext_resource type="Texture2D" uid="uid://urk053tjqvp1" path="res://assets/art/tilesheet/backgrounds.png" id="2_cwtag"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bjp4qygfqfx2" path="res://scenes/player/player.tscn" id="4_m61hw"]
 [ext_resource type="FontFile" uid="uid://dhmvfd4nqf2jp" path="res://assets/fonts/GrapeSoda.ttf" id="4_wwhxh"]
 [ext_resource type="Texture2D" uid="uid://bou4cumhxuve3" path="res://assets/art/icons/billboard.png" id="5_m61hw"]
+[ext_resource type="PackedScene" uid="uid://bu2154p0200ml" path="res://scenes/guide_bob/guide_bob.tscn" id="7_jdmxl"]
+[ext_resource type="Texture2D" uid="uid://dac00oyv5qyuk" path="res://assets/art/characters/astro_alien2.png" id="8_mulaw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4437"]
 texture = ExtResource("2_cwtag")
@@ -55,10 +57,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAYAAAAEAAQAAAABAAYAAAAEAAQAAAACAAYAAAAEAAQAAAADAAYAAAAEAAQAAAAEAAYAAAAEAAQAAAAFAAYAAAAEAAQAAAAGAAYAAAAEAAQAAAAHAAYAAAAEAAQAAAAIAAYAAAAEAAQAAAAJAAYAAAAEAAQAAAAKAAYAAAAEAAQAAAD//wAAAAAEAAQAAFD//wEAAAAEAAQAAFD//wIAAAAEAAQAAFD//wMAAAAEAAQAAFD//wQAAAAEAAQAAFD//wUAAAAEAAQAAFAAAP//AAAEAAQAADABAP//AAAEAAQAADACAP//AAAEAAQAADADAP//AAAEAAQAADAEAP//AAAEAAQAADAFAP//AAAEAAQAADAGAP//AAAEAAQAADAHAP//AAAEAAQAADAIAP//AAAEAAQAADAJAP//AAAEAAQAADAKAP//AAAEAAQAADA=")
+tile_map_data = PackedByteArray("AAAAAAYAAAAEAAMAAAABAAYAAAAEAAMAAAACAAYAAAAEAAMAAAADAAYAAAAEAAMAAAAEAAYAAAAEAAMAAAAFAAYAAAAEAAMAAAAGAAYAAAAEAAMAAAAHAAYAAAAEAAMAAAAIAAYAAAAEAAMAAAAJAAYAAAAEAAMAAAAKAAYAAAAEAAMAAAD//wAAAAAEAAMAAFD//wEAAAAEAAMAAFD//wIAAAAEAAMAAFD//wMAAAAEAAMAAFD//wQAAAAEAAMAAFD//wUAAAAEAAMAAFAAAP//AAAEAAMAADABAP//AAAEAAMAADACAP//AAAEAAMAADADAP//AAAEAAMAADAEAP//AAAEAAMAADAFAP//AAAEAAMAADAGAP//AAAEAAMAADAHAP//AAAEAAMAADAIAP//AAAEAAMAADAJAP//AAAEAAMAADAKAP//AAAEAAMAADA=")
 tile_set = ExtResource("3_a6n0j")
 
 [node name="Player" parent="." instance=ExtResource("4_m61hw")]
 position = Vector2(200, 392.645)
+
+[node name="GuideBob" parent="." instance=ExtResource("7_jdmxl")]
+position = Vector2(-91, 389)
+bob_texture = ExtResource("8_mulaw")
 
 [editable path="Player"]
