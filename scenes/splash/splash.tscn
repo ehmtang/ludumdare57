@@ -59,6 +59,6 @@ tile_map_data = PackedByteArray("AAAAAAYAAAAEAAQAAAABAAYAAAAEAAQAAAACAAYAAAAEAAQ
 tile_set = ExtResource("3_a6n0j")
 
 [node name="Player" parent="." instance=ExtResource("4_m61hw")]
-position = Vector2(78, 392.645)
+position = Vector2(200, 392.645)
 
 [editable path="Player"]
