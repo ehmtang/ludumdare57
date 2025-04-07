@@ -2,9 +2,8 @@ extends Node2D
 
 var lines : Array[String] = [
 	"aaaaaAAAAAAaaaaaaaaa!",
-	"... Hey Plum... Could you come get me?",
-	"It's cold and wet down here."
-]
+	"... Hey Plum... Could you come get me?"
+	]
 
 var timer : float = 0
 var pause_time : float = 2
