@@ -35,9 +35,10 @@ func _on_body_entered(body: Node) -> void:
 			line = "It took you: %d minute(s) and %02d second(s)" % [minutes, seconds]
 		else:
 			line = "It took you: %.1f seconds" % timer
-			lines.append(line)
 		
+		lines.append(line)
 		lines.append("Let's go home and have some cocoa.")
+		
 		DialogManager.dialog_finished.connect(_on_dialog_finished)
 		DialogManager.start_dialog(global_position, lines)
 
