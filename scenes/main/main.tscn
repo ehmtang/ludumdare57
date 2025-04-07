@@ -42,7 +42,7 @@ position = Vector2(38, 112)
 lines = Array[String](["Hey Plum, Bob's down there!", "I would go get him... but I'm scared of heights.", "Here use this rope. Press 'R' to reattch yourself to the last flag."])
 
 [node name="WinBob" parent="." instance=ExtResource("4_ow5a4")]
-position = Vector2(3136, 1015)
+position = Vector2(913, 90)
 
 [node name="CheckpointFlag_Start" parent="." instance=ExtResource("5_6q06x")]
 position = Vector2(165, 109)
